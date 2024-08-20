@@ -11,6 +11,45 @@ var audioFiles = [
         artist: "Sematary",
         song: "Shotgun"
         },
+        src: "sloth.mp3",
+        artist: "jaydes",
+        song: "sloth"
+        },
+        {
+        src: "stars.mp3",
+        artist: "Duster",
+        song: "Stars Will Fall"
+        },
+        {
+        src: "sickles.mp3",
+        artist: "Turnabout, Sematary",
+        song: "Sickle"
+        },
+        {
+        src: "hero.mp3",
+        artist: "juno",
+        song: "hero"
+        },
+        {
+        src: "souljah.mp3",
+        artist: "lil tracy",
+        song: "souljahwitch's faith"
+        },
+        {
+        src: "it's nothing.mp3",
+        artist: "osquinn",
+        song: "it's nothing"
+        },
+        {
+        src: "cartoon.mp3",
+        artist: "OutBy16",
+        song: "Cartoon"
+        },
+        {
+        src: "reverence.mp3",
+        artist: "Sematary",
+        song: "Reverence"
+        },
         
 ];
 
