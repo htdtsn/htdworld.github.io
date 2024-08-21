@@ -1,16 +1,6 @@
 var audio = document.getElementById("audio");
 var playPauseButton = document.getElementById("playPauseButton");
 var audioFiles = [
-        {
-        src: "https://files.catbox.moe/userix.mp3",
-        artist: "James Bandz",
-        song: "Pinned Paste"
-        },
-        {
-        src: "shotgun.mp3",
-        artist: "Sematary",
-        song: "Shotgun"
-        },
         src: "sloth.mp3",
         artist: "jaydes",
         song: "sloth"
@@ -44,11 +34,6 @@ var audioFiles = [
         src: "cartoon.mp3",
         artist: "OutBy16",
         song: "Cartoon"
-        },
-        {
-        src: "reverence.mp3",
-        artist: "Sematary",
-        song: "Reverence"
         },
         
 ];
