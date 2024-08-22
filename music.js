@@ -3,7 +3,7 @@ var playPauseButton = document.getElementById("playPauseButton");
 var audioFiles = [
         {
         src: "shotgun.mp3",
-        artist: "Sematary (tosen)",
+        artist: "Sematary",
         song: "Shotgun"
         },
         {
