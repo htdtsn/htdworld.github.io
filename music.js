@@ -1,6 +1,12 @@
 var audio = document.getElementById("audio");
 var playPauseButton = document.getElementById("playPauseButton");
 var audioFiles = [
+        {
+        src: "shotgun.mp3",
+        artist: "Sematary (tosen)",
+        song: "Shotgun"
+        },
+        {
         src: "sloth.mp3",
         artist: "jaydes",
         song: "sloth"
@@ -35,7 +41,11 @@ var audioFiles = [
         artist: "OutBy16",
         song: "Cartoon"
         },
-        
+        {
+        src: "reverence.mp3",
+        artist: "Sematary",
+        song: "Reverence"
+        },
 ];
 
 var artist = document.getElementById("artist");
