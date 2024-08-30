@@ -2,9 +2,9 @@ var audio = document.getElementById("audio");
 var playPauseButton = document.getElementById("playPauseButton");
 var audioFiles = [
         {
-        src: "shotgun.mp3",
-        artist: "Sematary",
-        song: "Shotgun"
+        src: "overseas.mp3",
+        artist: "Ken Carson",
+        song: "overseas"
         },
         {
         src: "sloth.mp3",
@@ -12,24 +12,24 @@ var audioFiles = [
         song: "sloth"
         },
         {
-        src: "stars.mp3",
-        artist: "Duster",
-        song: "Stars Will Fall"
+        src: "thatsnotme.mp3",
+        artist: "Skepta, JME",
+        song: "That's Not Me"
         },
         {
-        src: "sickles.mp3",
-        artist: "Turnabout, Sematary",
-        song: "Sickle"
+        src: "knucks.mp3",
+        artist: "Knucks",
+        song: "Los Pollos Hermanos"
         },
         {
-        src: "hero.mp3",
-        artist: "juno",
-        song: "hero"
+        src: "rose.mp3",
+        artist: "jaydes",
+        song: "rose"
         },
         {
-        src: "souljah.mp3",
-        artist: "lil tracy",
-        song: "souljahwitch's faith"
+        src: "jetlggd.mp3",
+        artist: "Destroy Lonely",
+        song: "JETLGGD"
         },
         {
         src: "it's nothing.mp3",
@@ -42,10 +42,7 @@ var audioFiles = [
         song: "Cartoon"
         },
         {
-        src: "reverence.mp3",
-        artist: "Sematary",
-        song: "Reverence"
-        },
+        
 ];
 
 var artist = document.getElementById("artist");
