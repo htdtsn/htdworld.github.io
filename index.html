@@ -190,37 +190,77 @@
         }
 
         .footer {
-            font-size: 1.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.75rem;
             text-align: center;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            opacity: 0.8;
+            z-index: 500;
         }
+
+        .secfooter {
+            position: fixed;
+            bottom: 1;
+            width: 100%;
+            font-size: 0.75rem;
+            text-align: center;
+            
+            color: #fff;
+            padding: 10px;
+            opacity: 0.8;
+            z-index: 500;
+        }
+
     </style>
 </head>
 <body>
-    
+    <div class="noise"></div>
+    <div class="lines"></div>
 
     <div class="main">
-
-
         <div class="characters-container">
             <div class="character">
-                <img src="77764556582b032cc44b465a90019ead.webp" alt="joe">
+                <img src="sem.jpg" alt="tosen">
                 <div class="character-name">joe</div>
-                <div class="character-quote">"skibby toilet"</div>
+                <div class="character-quote">"free diddy"</div>
                 <a href="https://instagram.com/htdtsn" target="_blank">
                     <button class="social-media-button">
-                        <img src="inter.png" alt="insta">
+                        <img src="insta.png" alt="doxbin">
                     </button>
-                    
                 </a>
             </div>
-        
-                
-                
+        </div>
+
+        <div class="audwin">
+            <div class="audio-controls">
+                <p style="font-size:13px;margin-bottom:5px;">Now Playing:</p>
+                <div id="songInfo" class="text-center">
+                    <div id="artist">Artist</div>&nbsp;-&nbsp;<div id="songTitle">Song</div>
+                </div>
+                <div class="controls" style="margin-top:10px;margin-bottom:7px;">
+                    <a onclick="previousAudio()" style="margin-right:10px;"><img src="back.png"></a>
+                    <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
+                    <a onclick="nextAudio()"><img src="next.png"></a>
+                </div>
+            </div>
+        </div>
 
         <audio id="audio"></audio>
     </div>
 
-    <script></script>
+    <div class="secfooter">
+        crip walkin on yo internet presence
+    </div>
+
+    <div class="footer">
+        © 2024 tosen.lol - All rights reserved
+    </div>
+
+    <script src="music.js"></script>
     <script>
          window.addEventListener('message', function(event) {
           if (event.data === 'playMusic') {
