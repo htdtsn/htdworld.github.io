@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Clone</title>
+    <title>@joe</title>
     <style>
         body {
             font-family: monospace;
@@ -130,6 +130,7 @@
             border: none;
             color: white;
             font-size: 24px;
+            font-family: monospace;
             cursor: pointer;
             margin: 0 10px;
         }
@@ -360,7 +361,7 @@
             const src = songSrcInput.files[0] ? URL.createObjectURL(songSrcInput.files[0]) : '';
 
             if (!title || !artist || !src) {
-                alert('Please fill all fields and select a song file.');
+                alert('fill all fields and select a song file.');
                 return;
             }
 
@@ -377,10 +378,10 @@
 
         nextBtn.addEventListener('click', () => {
     if (isShuffling) {
-        // Select a random song when shuffling
+        
         currentSongIndex = Math.floor(Math.random() * songs.length);
     } else {
-        // Go to the next song in the list
+        
         currentSongIndex = (currentSongIndex + 1) % songs.length;
     }
     selectSong(currentSongIndex);
@@ -388,10 +389,10 @@
 
 prevBtn.addEventListener('click', () => {
     if (isShuffling) {
-        // Select a random song when shuffling
+        
         currentSongIndex = Math.floor(Math.random() * songs.length);
     } else {
-        // Go to the previous song in the list
+        
         currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
     }
     selectSong(currentSongIndex);
