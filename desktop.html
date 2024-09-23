@@ -189,6 +189,22 @@
             transform: scale(1.2);
         }
 
+        .spotify-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent; 
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .spotify-button:hover {
+            background-color: #1ed760; 
+        }
+
         .footer {
             position: fixed;
             bottom: 0;
@@ -214,7 +230,6 @@
             opacity: 0.8;
             z-index: 500;
         }
-
     </style>
 </head>
 <body>
@@ -246,6 +261,10 @@
                     <a id="playPauseButton" onclick="togglePlayPause()" style="margin-right:10px;"><img src="play.png"></a>
                     <a onclick="nextAudio()"><img src="next.png"></a>
                 </div>
+                
+                <a href="spotifyclone.html">
+                    <button class="spotify-button">Go to Spotify</button>
+                </a>
             </div>
         </div>
 
