@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 0;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.3s;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            background-color: #282828;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+
+        .playlist-sidebar {
+            width: 300px;
+            background-color: #181818;
+            padding: 20px;
+            border-radius: 15px 0 0 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .playlist-header {
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .playlist-control input[type="text"], .playlist-control input[type="file"] {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: white;
+        }
+
+        .playlist-control button {
+            padding: 8px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--main-color, #1db954);
+            color: var(--text-color, white);
+            cursor: pointer;
+        }
+
+        #song-list {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        #song-list li {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #282828;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #song-list li:hover {
+            background-color: #333;
+        }
+
+        #song-list li.active {
+            background-color: var(--main-color, #1db954);
+        }
+
+        .player-controls {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .player {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 15px 15px 0;
+            transition: background-color 0.3s;
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .song-info h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .song-info p {
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .progress-container, .volume-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            appearance: none;
+            height: 5px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--main-color, #1db954);
+            cursor: pointer;
+        }
+
+        .extra-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .volume-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .volume-container p {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .theme-controls-container {
+            padding: 20px;
+            border-left: 1px solid #333;
+            border-radius: 0 15px 15px 0;
+            background-color: #181818;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .theme-controls {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .theme-controls select {
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #333;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .light-mode {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        .light-mode .container {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-mode .playlist-sidebar,
+        .light-mode .player {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-mode #song-list li {
+            background-color: #eee;
+            color: #000;
+        }
+
+        .light-mode #song-list li:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="playlist-sidebar">
+            <div class="playlist-header">Playlist</div>
+            <div class="playlist-control">
+                <input type="text" id="song-title" placeholder="Song Title">
+                <input type="text" id="song-artist" placeholder="Artist Name">
+                <input type="file" id="song-src" accept=".mp3">
+                <button id="add-song-btn">Add Song</button>
+            </div>
+            <ul id="song-list"></ul>
+        </div>
+
+        <div class="player-controls">
+            <div class="player">
+                <div class="song-info">
+                    <h2 id="title">Song Title</h2>
+                    <p id="artist">Artist Name</p>
+                </div>
+
+                <audio id="audio-player" src=""></audio>
+
+                <div class="controls">
+                    <button id="shuffle-btn">🔀</button>
+                    <button id="prev-btn">⏮️</button>
+                    <button id="play-btn">▶️</button>
+                    <button id="pause-btn" style="display:none;">⏸️</button>
+                    <button id="next-btn">⏭️</button>
+                    <button id="repeat-btn">🔁</button>
+                </div>
+
+                <div class="progress-container">
+                    <input type="range" id="progress" value="0" max="100">
+                </div>
+
+                <div class="extra-controls">
+                    <div class="volume-container">
+                        <p>Volume</p>
+                        <input type="range" id="volume-control" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+
+            <div class="theme-controls-container">
+                <div class="theme-controls">
+                    <select id="theme-selector">
+                        <option value="dark">Dark Mode</option>
+                        <option value="light">Light Mode</option>
+                    </select>
+                    <button id="apply-theme-btn">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let songs = [];
+        const audioPlayer = document.getElementById('audio-player');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const repeatBtn = document.getElementById('repeat-btn');
+        const progressSlider = document.getElementById('progress');
+        const volumeSlider = document.getElementById('volume-control');
+        const songList = document.getElementById('song-list');
+        const titleDisplay = document.getElementById('title');
+        const artistDisplay = document.getElementById('artist');
+        const themeSelector = document.getElementById('theme-selector');
+        const applyThemeBtn = document.getElementById('apply-theme-btn');
+        const addSongBtn = document.getElementById('add-song-btn');
+        const songTitleInput = document.getElementById('song-title');
+        const songArtistInput = document.getElementById('song-artist');
+        const songSrcInput = document.getElementById('song-src');
+
+        let currentSongIndex = 0;
+        let isShuffling = false;
+        let isRepeating = false;
+
+        function populateSongList() {
+            songList.innerHTML = '';
+            songs.forEach((song, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${song.title} - ${song.artist}`;
+                li.addEventListener('click', () => selectSong(index));
+                songList.appendChild(li);
+            });
+        }
+
+        function selectSong(index) {
+            currentSongIndex = index;
+            audioPlayer.src = songs[index].src;
+            titleDisplay.textContent = songs[index].title;
+            artistDisplay.textContent = songs[index].artist;
+            audioPlayer.play();
+            updateActiveSong();
+        }
+
+        function updateActiveSong() {
+            const songItems = document.querySelectorAll('#song-list li');
+            songItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentSongIndex);
+            });
+        }
+
+        playBtn.addEventListener('click', () => {
+            audioPlayer.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline';
+        });
+
+        pauseBtn.addEventListener('click', () => {
+            audioPlayer.pause();
+            playBtn.style.display = 'inline';
+            pauseBtn.style.display = 'none';
+        });
+
+        audioPlayer.addEventListener('timeupdate', () => {
+            const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressSlider.value = progressPercent;
+        });
+
+        progressSlider.addEventListener('input', () => {
+            const newTime = (progressSlider.value / 100) * audioPlayer.duration;
+            audioPlayer.currentTime = newTime;
+        });
+
+        addSongBtn.addEventListener('click', () => {
+            const title = songTitleInput.value;
+            const artist = songArtistInput.value;
+            const src = songSrcInput.files[0] ? URL.createObjectURL(songSrcInput.files[0]) : '';
+
+            if (!title || !artist || !src) {
+                alert('Please fill all fields and select a song file.');
+                return;
+            }
+
+            songs.push({ title, artist, src });
+            populateSongList();
+            songTitleInput.value = '';
+            songArtistInput.value = '';
+            songSrcInput.value = '';
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            audioPlayer.volume = volumeSlider.value / 100;
+        });
+
+        nextBtn.addEventListener('click', () => {
+    if (isShuffling) {
+        // Select a random song when shuffling
+        currentSongIndex = Math.floor(Math.random() * songs.length);
+    } else {
+        // Go to the next song in the list
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+    }
+    selectSong(currentSongIndex);
+});
+
+prevBtn.addEventListener('click', () => {
+    if (isShuffling) {
+        // Select a random song when shuffling
+        currentSongIndex = Math.floor(Math.random() * songs.length);
+    } else {
+        // Go to the previous song in the list
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    }
+    selectSong(currentSongIndex);
+});
+
+
+        audioPlayer.addEventListener('ended', () => {
+            if (isRepeating) {
+                audioPlayer.currentTime = 0;
+                audioPlayer.play();
+            } else {
+                currentSongIndex = isShuffling ? Math.floor(Math.random() * songs.length) : (currentSongIndex + 1) % songs.length;
+                selectSong(currentSongIndex);
+            }
+        });
+
+        applyThemeBtn.addEventListener('click', () => {
+            if (themeSelector.value === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        });
+
+        populateSongList();
+        selectSong(currentSongIndex);
+
+        nextBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            selectSong(currentSongIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            selectSong(currentSongIndex);
+        });
+    </script>
+</body>
+</html>
