@@ -190,20 +190,20 @@
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;
 
-    // Function to update the content container position based on mouse movement
+    
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // Calculate new translate values based on mouse position
+        
         const translateX = (mouseX / windowWidth - 0.5) * 20;  // Adjust intensity of X movement
         const translateY = (mouseY / windowHeight - 0.5) * 20; // Adjust intensity of Y movement
 
-        // Apply translation to the container
+        
         contentContainer.style.transform = `translate(${translateX}px, ${translateY}px)`;
     });
 
-    // Update window size on resize
+    
     window.addEventListener('resize', () => {
         windowWidth = window.innerWidth;
         windowHeight = window.innerHeight;
