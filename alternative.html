@@ -24,7 +24,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow: hidden; /* Prevent scrollbars */
+            overflow: hidden; 
         }
 
         .content-container {
@@ -36,8 +36,6 @@
             max-width: 100vw;
             text-align: center;
             transition: transform 0.1s ease-out;
-            /* Position for panning effect */
-            position: relative;
         }
 
         .box {
@@ -174,7 +172,6 @@
     <div class="footer">
         signal: https://signal.me/#eu/Jj06eLuzr9PMjLL_C_Wz1KdUL3lrBT1uojVmv6xLEy-i8rYNomVOI6j72TP_GgFC<br>
         email: htdtsn@420blaze.it <a href="pgp.txt" style="font-weight: bold">[PGP]</a><br><br>
-        <br><br>
 
         <div class="banner">
             <img src="monero-now.gif" alt="Monero Now"> 
@@ -184,30 +181,7 @@
 </div>
 
 <script>
-    const contentContainer = document.getElementById('content-container');
-
-    // Get window dimensions
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
-
     
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        
-        const translateX = (mouseX / windowWidth - 0.5) * 20;  // Adjust intensity of X movement
-        const translateY = (mouseY / windowHeight - 0.5) * 20; // Adjust intensity of Y movement
-
-        
-        contentContainer.style.transform = `translate(${translateX}px, ${translateY}px)`;
-    });
-
-    
-    window.addEventListener('resize', () => {
-        windowWidth = window.innerWidth;
-        windowHeight = window.innerHeight;
-    });
 </script>
 
 </body>
