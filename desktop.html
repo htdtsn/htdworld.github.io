@@ -283,6 +283,19 @@
         © 2024 htd.world - All rights reserved
     </div>
 
+    <script>
+        const titles = ["htd", "world", "@htdtsn", "xd", "htd.world"];
+        function shuffleTitles() {
+            let currentIndex = 0;
+
+            setInterval(() => {
+                document.title = titles[currentIndex];
+                currentIndex = (currentIndex + 1) % titles.length;
+            }, 500); 
+        }
+        window.onload = shuffleTitles;
+    </script>
+
     <script src="music.js"></script>
     <script>
          window.addEventListener('message', function(event) {
