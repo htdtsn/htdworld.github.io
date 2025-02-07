@@ -1,10 +1,5 @@
 var audio = document.getElementById("audio");
-
-
-
 var playPauseButton = document.getElementById("playPauseButton");
-
-
 
 var audioFiles = [
 
