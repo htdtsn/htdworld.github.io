@@ -1,0 +1,355 @@
+
+body {
+    font-family: monospace, sans-serif;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 0, 0, 0.2);
+    box-shadow: 0 0 4px #e0e0e0;
+}
+
+.name {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #e0e0e0;
+}
+
+.bio {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+    min-height: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links .link {
+    display: block;
+    background-color: rgba(15, 15, 15, 0.9);
+    box-shadow: 0 0 2px white;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.links .link:hover {
+    background-color: black;
+    transform: translateY(-3px);
+}
+
+
+
+.name {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.bio {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.bio-container {
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px white;
+    width: 400px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+}
+
+.music-container {
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px white;
+    width: 350px;
+    position: relative;
+    z-index: 1;
+}
+
+.music-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.album-art img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid grey;
+}
+
+.track-info {
+    text-align: left;
+    flex: 1;
+}
+
+.track-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e0e0e0;
+    margin: 0;
+}
+
+.artist {
+    font-size: 12px;
+    color: #a0a0a0;
+    margin: 0;
+}
+
+.track-bar {
+    width: 100%;
+    height: 4px;
+    background-color: darkslategray;
+    border-radius: 2px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.1s linear;
+}
+
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.control-btn {
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+.control-btn:hover {
+    background-color:transparent;
+}
+
+.control-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+#cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+
+.bio-container {
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px white;
+    width: 400px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+    transform-style: preserve-3d;
+}
+
+.music-container {
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px white;
+    width: 350px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-out;
+    transform-style: preserve-3d;
+}
+
+.visualizer-container {
+    position: fixed;
+    bottom: 50px; 
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 350px; 
+    height: 80px; 
+    background-color: transparent; 
+    z-index: 9998;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#visualizer {
+    width: 100%;
+    height: 100%;
+}
+
+.visualizer-container::after {
+    content: '';
+    position: absolute;
+    bottom: 1;
+    left: 0;
+    margin-top: 5px;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+
+.social-profile-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px white;
+    width: 350px;
+    margin: 20px auto; 
+}
+
+.profile-picture img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin-right: 12px; 
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.display-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.display-name h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.display-name h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.display-name h2:hover::after {
+    left: 100%;
+}
+
+.arrow-icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s;
+}
+
+.arrow-icon:hover {
+    transform: translateX(5px);
+}
+
+.social-media-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    margin-bottom: 10px;
+}
+
+.social-logo {
+    width: 18px; 
+    height: 18px;
+}
+
+.username {
+    font-size: 13px; 
+    color: #a0a0a0;
+}
+
+.account-stats {
+    display: flex;
+    gap: 12px; 
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 14px; 
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.stat-label {
+    font-size: 11px; 
+    color: #a0a0a0;
+}
+
+
