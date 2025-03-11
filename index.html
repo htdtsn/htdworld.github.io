@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<style>
+
+</style>
+<body>
+    <canvas id="cursor-trail"></canvas>
+    <div class="bio-container"  data-aos="fade-up" data-aos-duration="1000">
+        <div class="profile">
+            <img src="oscar18.png" alt="Profile Picture" class="profile-pic">
+            <h1 class="name">joe</h1>
+            <p class="bio">october country</p>
+        </div>
+
+        <div class="social-profile-container" data-aos="fade-in" data-aos-duration="1000">
+            <div class="profile-picture">
+                <img src="oscar18.png" alt="Profile Picture">
+            </div>
+            <div class="profile-details">
+                <div class="display-name">
+                    <h2>j ひ</h2>
+                    <a href="https://instagram.com/@htdtsn" target="_blank">
+                        <img src="http://www.w3.org/2000/svg" alt="" class="arrow-icon">
+                    </a>
+                </div>
+                <div class="social-media-info">
+                    <span class="username">@htdtsn</span>
+                </div>
+                <div class="account-stats">
+                    <div class="stat">
+                        <span class="stat-number">7,888</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Post</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">175</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-profile-container" data-aos="fade-in" data-aos-duration="1000">
+            <div class="profile-picture">
+                <img src="https://tryhackme-images.s3.amazonaws.com/user-avatars/672602495a29a68b5585b683-1730544739980" alt="Profile Picture">
+            </div>
+            <div class="profile-details">
+               <div class="display-name">
+                <h2>finale</h2>
+                <a href="https://tryhackme.com/p/finale" target="_blank">
+                    <img src="http://www.w3.org/2000/svg" alt="" class="arrow-icon">
+                </a>
+            </div>
+            <div class="social-media-info">
+                <span class="username">@finale</span>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="music-container" data-aos="fade-up" data-aos-duration="1000">
+        <div class="music-player">
+            <div class="album-art">
+                <img src="album1.jpg" alt="Album Art" id="album-art">
+            </div>
+            <div class="track-info">
+                <p class="track-title" id="track-title">Song Title</p>
+                <p class="artist" id="artist">Artist Name</p>
+            </div>
+            <div class="track-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="prev">
+                    <img src="back.png" alt="Previous">
+                </button>
+                <button class="control-btn" id="play-pause">
+                    <img src="play.png" alt="Play/Pause" id="play-pause-img">
+                </button>
+                <button class="control-btn" id="next">
+                    <img src="next.png" alt="Next">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="visualizer-container">
+        <canvas id="visualizer"></canvas>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+    <script>
+new cursoreffects.fairyDustCursor({
+  colors: ["#ffffff", "#ffffff", "#ffffff"],
+});
+    </script>
+
+    
+    <script type="text/javascript">
+        var speed = 33;
+        var drops = 100;
+        var colour = "#999";
+        var flks = new Array();
+        var flkx = new Array();
+        var flky = new Array();
+        var fldy = new Array();
+        var swide, shigh, boddie;
+        var ie_version = (navigator.appVersion.indexOf("MSIE") != -1) ? parseFloat(navigator.appVersion.split("MSIE")[1]) : false;
+
+        function addLoadEvent(funky) {
+            var oldonload = window.onload;
+            if (typeof(oldonload) != 'function') window.onload = funky;
+            else window.onload = function() {
+                if (oldonload) oldonload();
+                funky();
+            }
+        }
+
+        addLoadEvent(storm);
+
+        function storm() {
+            if (document.getElementById) {
+                var r1, r2;
+                boddie = document.createElement("div");
+                boddie.style.position = "fixed";
+                boddie.style.top = "0px";
+                boddie.style.left = "0px";
+                boddie.style.width = "1px";
+                boddie.style.height = "1px";
+                boddie.style.overflow = "visible";
+                boddie.style.backgroundColor = "transparent";
+                document.body.appendChild(boddie);
+                set_width();
+                for (var i = 0; i < drops; i++) {
+                    flks[i] = createDiv(16, 2, "transparent");
+                    r1 = createDiv(6, 2, colour);
+                    r1.style.top = "10px";
+                    r1.style.left = "0px";
+                    flks[i].appendChild(r1);
+                    r2 = createDiv(10, 2, colour);
+                    r2.style.top = "0px";
+                    r2.style.left = "0px";
+                    if (ie_version && ie_version < 10) r2.style.filter = "alpha(opacity=25)";
+                    else r2.style.opacity = 0.25;
+                    flks[i].appendChild(r2);
+                    flkx[i] = 2 * Math.floor(Math.random() * swide / 2);
+                    flky[i] = Math.floor(Math.random() * shigh);
+                    fldy[i] = 2 + Math.floor(Math.random() * 4);
+                    flks[i].style.left = flkx[i] + "px";
+                    flks[i].style.top = flky[i] + "px";
+                    boddie.appendChild(flks[i]);
+                }
+                setInterval("cats_and_dogs()", speed);
+            }
+        }
+
+        function createDiv(height, width, colour) {
+            var div = document.createElement("div");
+            div.style.position = "absolute";
+            div.style.height = height + "px";
+            div.style.width = width + "px";
+            div.style.overflow = "hidden";
+            div.style.backgroundColor = colour;
+            return (div);
+        }
+
+        window.onresize = set_width;
+
+        function set_width() {
+            var sw_min = 999999;
+            var sh_min = 999999;
+            if (document.documentElement && document.documentElement.clientWidth) {
+                sw_min = document.documentElement.clientWidth;
+                sh_min = document.documentElement.clientHeight;
+            }
+            if (typeof(self.innerWidth) != "undefined" && self.innerWidth) {
+                if (self.innerWidth < sw_min) sw_min = self.innerWidth;
+                if (self.innerHeight < sh_min) sh_min = self.innerHeight;
+            }
+            if (document.body.clientWidth) {
+                if (document.body.clientWidth < sw_min) sw_min = document.body.clientWidth;
+                if (document.body.clientHeight < sh_min) sh_min = document.body.clientHeight;
+            }
+            if (sw_min == 999999 || sh_min == 999999) {
+                sw_min = 800;
+                sh_min = 600;
+            }
+            swide = sw_min - 2;
+            shigh = sh_min;
+        }
+
+        function cats_and_dogs(c) {
+            var i, x, o = 0;
+            for (i = 0; i < drops; i++) {
+                flky[i] += fldy[i];
+                if (flky[i] >= shigh - 16) {
+                    flky[i] = -16;
+                    fldy[i] = 2 + Math.floor(Math.random() * 4);
+                    flkx[i] = 2 * Math.floor(Math.random() * swide / 2);
+                    flks[i].style.left = flkx[i] + "px";
+                }
+                flks[i].style.top = flky[i] + "px";
+            }
+        }
+
+
+const bioText = document.querySelector('.bio');
+const quote = "october country";
+let index = 0;
+let isDeleting = false;
+
+const typeWriter = () => {
+    const currentText = bioText.textContent;
+
+    if (!isDeleting) {
+        bioText.textContent = quote.slice(0, index + 1);
+        index++;
+        if (index > quote.length) {
+            isDeleting = true;
+            setTimeout(typeWriter, 1000); 
+        } else {
+            setTimeout(typeWriter, 100);
+        }
+    } else {
+        bioText.textContent = currentText.slice(0, -1);
+        if (bioText.textContent === "") {
+            isDeleting = false;
+            index = 0;
+            setTimeout(typeWriter, 500); 
+        } else {
+            setTimeout(typeWriter, 50); 
+        }
+    }
+};
+
+typeWriter();
+    </script>
+</body>
+</html>
